@@ -1,0 +1,22 @@
+services:
+  url-press-php:
+    build:
+      context: .
+    container_name: url-press-php
+    volumes:
+      - ./:/app
+    ports:
+      - 8080:8080
+    command: php artisan serve --host 0.0.0.0 --port 8080
+
+  url-press-mysql:
+    image: mysql:8.4.7
+    ports:
+      - 3306:3306
+    container_name: url-press-mysql
+    volumes:
+      - ./storage/.db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD}
+      - MYSQL_DATABASE=${DB_DATABASE}
+      - MYSQL_PASSWORD=${DB_PASSWORD}
