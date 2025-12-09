@@ -22,6 +22,8 @@ class UserService implements UserServiceInterface
     /**
      * @param  array<string, mixed>  $attributes
      * @return User
+     *
+     * @throws BusinessLogicException
      */
     public function createUser(array $attributes): User
     {
@@ -44,5 +46,14 @@ class UserService implements UserServiceInterface
         $user = new User($attributes);
 
         return $this->userRepository->create($user);
+    }
+
+    /**
+     * @param  string  $id
+     * @return User
+     */
+    public function detailUser(string $id): User
+    {
+        return $this->userRepository->detail($id);
     }
 }

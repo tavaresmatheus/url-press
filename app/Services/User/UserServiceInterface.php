@@ -13,4 +13,10 @@ interface UserServiceInterface
      * @return User
      */
     public function createUser(array $attributes): User;
+
+    /**
+     * @param  string  $id
+     * @return User
+     */
+    public function detailUser(string $id): User;
 }
