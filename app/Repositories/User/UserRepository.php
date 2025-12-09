@@ -14,7 +14,7 @@ class UserRepository extends GenericRepository implements UserRepositoryInterfac
 {
     public function __construct(User $model)
     {
-        return parent::__construct($model);
+        parent::__construct($model);
     }
 
     /**
