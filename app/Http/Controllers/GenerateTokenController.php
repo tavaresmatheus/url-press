@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Auth;
 class GenerateTokenController extends Controller
 {
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return JsonResponse
+     *
      * @throws Exception
      */
     public function __invoke(Request $request): JsonResponse
@@ -30,7 +31,7 @@ class GenerateTokenController extends Controller
 
         return response()->json([
             'message' => 'Login successful',
-            'token' => $token
+            'token' => $token,
         ]);
     }
 }
