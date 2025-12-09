@@ -34,7 +34,7 @@ class GenericRepository implements GenericRepositoryInterface
      */
     public function create(Model $model): Model
     {
-        return $this->model->newQuery()->create($model->toArray());
+        return $this->model->newQuery()->create($model->getAttributes());
     }
 
     /**
