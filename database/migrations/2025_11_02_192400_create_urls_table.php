@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('urls', function (Blueprint $table) {
-            $table->uuid('url_id')->primary();
+            $table->uuid('id')->primary();
             $table->text('original_url');
             $table->string('slug', 10);
             $table->bigInteger('accesses')->default(0);
             $table->uuid('user_id');
             $table->foreign('user_id')
-                ->references('user_id')
+                ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
             $table->timestamps();
