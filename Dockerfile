@@ -6,10 +6,12 @@ COPY . .
 
 RUN apk --no-cache update \
     && apk add \
-    git \
-    zip \
-    unzip \
-    && docker-php-ext-install pdo_mysql
+        git \
+        zip \
+        unzip \
+        postgresql-dev \
+        libpq \
+    && docker-php-ext-install pdo_pgsql pgsql
 
 RUN curl -sS https://getcomposer.org/installer -o composer-setup.php \
     && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
