@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace App\Services\User;
 
-use App\Http\Resources\UserResource;
+use App\Http\Resources\User\UserResource;
+use App\Http\Resources\User\UserCollection;
 
 interface UserServiceInterface
 {
@@ -19,4 +20,9 @@ interface UserServiceInterface
      * @return UserResource
      */
     public function detailUser(string $id): UserResource;
+
+    /**
+     * @return UserCollection
+     */
+    public function listUsers(): UserCollection;
 }

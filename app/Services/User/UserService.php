@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App\Services\User;
 
 use App\Exceptions\BusinessLogicException;
-use App\Http\Resources\UserResource;
+use App\Http\Resources\User\UserCollection;
+use App\Http\Resources\User\UserResource;
 use App\Models\User;
 use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Contracts\Hashing\Hasher;
@@ -56,5 +57,14 @@ class UserService implements UserServiceInterface
     public function detailUser(string $id): UserResource
     {
         return new UserResource($this->userRepository->detail($id));
+    }
+
+    /**
+     * @return UserCollection
+     */
+    public function listUsers(): UserCollection
+    {
+        $users = $this->userRepository->list();
+        return new UserCollection($users);
     }
 }
