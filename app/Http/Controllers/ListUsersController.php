@@ -14,12 +14,13 @@ class ListUsersController extends Controller
     }
 
     /**
-     * @param Request $request
+     * @param  Request  $request
      * @return JsonResponse
      */
     public function __invoke(Request $request): JsonResponse
     {
         $users = $this->userService->listUsers();
+
         return response()->json($users);
     }
 }

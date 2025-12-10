@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Services\User;
 
-use App\Http\Resources\User\UserResource;
 use App\Http\Resources\User\UserCollection;
+use App\Http\Resources\User\UserResource;
 
 interface UserServiceInterface
 {

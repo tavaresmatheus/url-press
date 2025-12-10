@@ -65,6 +65,7 @@ class UserService implements UserServiceInterface
     public function listUsers(): UserCollection
     {
         $users = $this->userRepository->list();
+
         return new UserCollection($users);
     }
 }
