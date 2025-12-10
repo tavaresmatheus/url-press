@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('urls', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->text('original_url');
-            $table->string('slug', 10);
+            $table->string('slug', 10)->unique();
             $table->bigInteger('accesses')->default(0);
             $table->uuid('user_id');
             $table->foreign('user_id')
