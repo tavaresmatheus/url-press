@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Services\User;
 
 use App\Exceptions\BusinessLogicException;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use App\Repositories\User\UserRepositoryInterface;
 use Illuminate\Contracts\Hashing\Hasher;
@@ -21,11 +22,11 @@ class UserService implements UserServiceInterface
 
     /**
      * @param  array<string, mixed>  $attributes
-     * @return User
+     * @return UserResource
      *
      * @throws BusinessLogicException
      */
-    public function createUser(array $attributes): User
+    public function createUser(array $attributes): UserResource
     {
         $userEmail = $attributes['email'];
         if (! is_string($userEmail)) {
@@ -45,15 +46,15 @@ class UserService implements UserServiceInterface
         $attributes['password'] = $this->hash->make($password);
         $user = new User($attributes);
 
-        return $this->userRepository->create($user);
+        return new UserResource($this->userRepository->create($user));
     }
 
     /**
      * @param  string  $id
-     * @return User
+     * @return UserResource
      */
-    public function detailUser(string $id): User
+    public function detailUser(string $id): UserResource
     {
-        return $this->userRepository->detail($id);
+        return new UserResource($this->userRepository->detail($id));
     }
 }

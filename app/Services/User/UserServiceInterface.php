@@ -4,19 +4,19 @@ declare(strict_types=1);
 
 namespace App\Services\User;
 
-use App\Models\User;
+use App\Http\Resources\UserResource;
 
 interface UserServiceInterface
 {
     /**
      * @param  array<string, mixed>  $attributes
-     * @return User
+     * @return UserResource
      */
-    public function createUser(array $attributes): User;
+    public function createUser(array $attributes): UserResource;
 
     /**
      * @param  string  $id
-     * @return User
+     * @return UserResource
      */
-    public function detailUser(string $id): User;
+    public function detailUser(string $id): UserResource;
 }
