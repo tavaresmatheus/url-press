@@ -87,9 +87,11 @@ class UserService implements UserServiceInterface
      */
     public function deleteUser(string $id): bool
     {
-        $user = $this->detailUser($id);
+        $userResource = $this->detailUser($id);
 
-        $wasDeleted = $this->userRepository->delete($user['id']);
+        $userModel = $userResource->resource;
+
+        $wasDeleted = $this->userRepository->delete((string) $userModel->id);
         if (! $wasDeleted) {
             throw new BusinessLogicException('Coudn\'t delete user.');
         }
