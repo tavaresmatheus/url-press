@@ -34,7 +34,7 @@ interface UserServiceInterface
     public function updateUser(string $id, array $attributes): UserResource;
 
     /**
-     * @param string $id
+     * @param  string  $id
      * @return bool
      */
     public function deleteUser(string $id): bool;

@@ -82,7 +82,7 @@ class UserService implements UserServiceInterface
     }
 
     /**
-     * @param string $id
+     * @param  string  $id
      * @return bool
      */
     public function deleteUser(string $id): bool
@@ -91,7 +91,7 @@ class UserService implements UserServiceInterface
 
         $wasDeleted = $this->userRepository->delete($user['id']);
         if (! $wasDeleted) {
-            throw new  BusinessLogicException('Coudn\'t delete user.');
+            throw new BusinessLogicException('Coudn\'t delete user.');
         }
 
         return $wasDeleted;
