@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Repositories\Url\UrlRepository;
+use App\Repositories\Url\UrlRepositoryInterface;
 use App\Repositories\User\UserRepository;
 use App\Repositories\User\UserRepositoryInterface;
 use App\Services\User\UserService;
@@ -23,6 +25,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             UserRepositoryInterface::class,
             UserRepository::class
+        );
+
+        $this->app->bind(
+            UrlRepositoryInterface::class,
+            UrlRepository::class
         );
     }
 
