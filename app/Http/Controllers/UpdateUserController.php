@@ -14,15 +14,15 @@ class UpdateUserController extends Controller
     }
 
     /**
-     * @param Request $request
-     * @param string $id
+     * @param  Request  $request
+     * @param  string  $id
      * @return JsonResponse
      */
     public function __invoke(Request $request, string $id): JsonResponse
     {
         $request->validate([
             'name' => 'max:255',
-            'email' => 'email:rfc'
+            'email' => 'email:rfc',
         ]);
 
         $attributes = [

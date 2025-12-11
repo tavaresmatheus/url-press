@@ -70,8 +70,8 @@ class UserService implements UserServiceInterface
     }
 
     /**
-     * @param string $id
-     * @param array<string, mixed> $attributes
+     * @param  string  $id
+     * @param  array<string, mixed>  $attributes
      * @return UserResource
      */
     public function updateUser(string $id, array $attributes): UserResource
