@@ -1,0 +1,29 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Services\User\UserServiceInterface;
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
+class DeleteUserController extends Controller
+{
+    /**
+     * @param UserServiceInterface $userService
+     */
+    public function __construct(protected UserServiceInterface $userService)
+    {
+        $this->userService = $userService;
+    }
+
+    /**
+     * @param Request $request
+     * @return Response
+     */
+    public function __invoke(Request $request, string $id): Response
+    {
+        $userDeletedSuccessfuly = $this->userService->deleteUser($id);
+
+        return response()->noContent();
+    }
+}

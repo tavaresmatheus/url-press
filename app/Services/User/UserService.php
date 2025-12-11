@@ -80,4 +80,20 @@ class UserService implements UserServiceInterface
 
         return new UserResource($this->userRepository->update($id, $user));
     }
+
+    /**
+     * @param string $id
+     * @return bool
+     */
+    public function deleteUser(string $id): bool
+    {
+        $user = $this->detailUser($id);
+
+        $wasDeleted = $this->userRepository->delete($user['id']);
+        if (! $wasDeleted) {
+            throw new  BusinessLogicException('Coudn\'t delete user.');
+        }
+
+        return $wasDeleted;
+    }
 }
