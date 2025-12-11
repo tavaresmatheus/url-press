@@ -41,6 +41,11 @@ class CreateUserController extends Controller
 
         $user = $this->userService->createUser($attributes);
 
-        return response()->json($user);
+        $userId = '';
+        if (is_string($user['id'])) {
+            $userId = $user['id'];
+        }
+
+        return response()->json($user, 201)->header('Location', url('api/users/'.$userId));
     }
 }

@@ -22,7 +22,7 @@ class DeleteUserController extends Controller
      */
     public function __invoke(Request $request, string $id): Response
     {
-        $userDeletedSuccessfuly = $this->userService->deleteUser($id);
+        $this->userService->deleteUser($id);
 
         return response()->noContent();
     }
