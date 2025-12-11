@@ -68,4 +68,16 @@ class UserService implements UserServiceInterface
 
         return new UserCollection($users);
     }
+
+    /**
+     * @param string $id
+     * @param array<string, mixed> $attributes
+     * @return UserResource
+     */
+    public function updateUser(string $id, array $attributes): UserResource
+    {
+        $user = new User($attributes);
+
+        return new UserResource($this->userRepository->update($id, $user));
+    }
 }
