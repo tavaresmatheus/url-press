@@ -24,5 +24,6 @@ class Url extends Model
         'original_url',
         'slug',
         'accesses',
+        'user_id',
     ];
 }
