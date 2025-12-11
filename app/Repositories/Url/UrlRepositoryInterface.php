@@ -10,6 +10,4 @@ use App\Repositories\GenericRepository\GenericRepositoryInterface;
 /**
  * @extends GenericRepositoryInterface<Url, string>
  */
-interface UrlRepositoryInterface extends GenericRepositoryInterface
-{
-}
+interface UrlRepositoryInterface extends GenericRepositoryInterface {}
