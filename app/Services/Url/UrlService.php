@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Services\Url;
 
+use App\Exceptions\BusinessLogicException;
 use App\Http\Resources\UrlResource;
 use App\Models\Url;
 use App\Repositories\Url\UrlRepositoryInterface;
@@ -36,6 +37,24 @@ class UrlService implements UrlServiceInterface
     public function detailUrl(string $id): UrlResource
     {
         return new UrlResource($this->urlRepository->detail($id));
+    }
+
+    /**
+     * @param  string  $id
+     * @return bool
+     */
+    public function deleteUrl(string $id): bool
+    {
+        $urlResource = $this->detailUrl($id);
+
+        $urlModel = $urlResource->resource;
+
+        $wasDeleted = $this->urlRepository->delete((string) $urlModel->id);
+        if (! $wasDeleted) {
+            throw new BusinessLogicException('Coudn\'t delete user.');
+        }
+
+        return $wasDeleted;
     }
 
     /**

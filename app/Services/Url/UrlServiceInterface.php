@@ -19,4 +19,10 @@ interface UrlServiceInterface
      * @return UrlResource
      */
     public function detailUrl(string $id): UrlResource;
+
+    /**
+     * @param  string  $id
+     * @return bool
+     */
+    public function deleteUrl(string $id): bool;
 }

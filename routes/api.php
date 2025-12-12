@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CreateUrlController;
 use App\Http\Controllers\CreateUserController;
+use App\Http\Controllers\DeleteUrlController;
 use App\Http\Controllers\DeleteUserController;
 use App\Http\Controllers\DetailUrlController;
 use App\Http\Controllers\DetailUserController;
@@ -23,4 +24,5 @@ Route::prefix('users')->middleware('auth:sanctum')->group(function () {
 Route::prefix('urls')->middleware('auth:sanctum')->group(function () {
     Route::post('/', CreateUrlController::class);
     Route::get('/{id}', DetailUrlController::class)->whereUuid('id');
+    Route::delete('/{id}', DeleteUrlController::class)->whereUuid('id');
 });
