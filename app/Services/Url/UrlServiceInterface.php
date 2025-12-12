@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace App\Services\Url;
 
-use App\Http\Resources\UrlResource;
+use App\Http\Resources\Url\UrlCollection;
+use App\Http\Resources\Url\UrlResource;
 
 interface UrlServiceInterface
 {
@@ -19,6 +20,11 @@ interface UrlServiceInterface
      * @return UrlResource
      */
     public function detailUrl(string $id): UrlResource;
+
+    /**
+     * @return UrlCollection
+     */
+    public function listUrl(): UrlCollection;
 
     /**
      * @param  string  $id

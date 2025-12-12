@@ -5,7 +5,8 @@ declare(strict_types=1);
 namespace App\Services\Url;
 
 use App\Exceptions\BusinessLogicException;
-use App\Http\Resources\UrlResource;
+use App\Http\Resources\Url\UrlCollection;
+use App\Http\Resources\Url\UrlResource;
 use App\Models\Url;
 use App\Repositories\Url\UrlRepositoryInterface;
 
@@ -37,6 +38,16 @@ class UrlService implements UrlServiceInterface
     public function detailUrl(string $id): UrlResource
     {
         return new UrlResource($this->urlRepository->detail($id));
+    }
+
+    /**
+     * @return UrlCollection
+     */
+    public function listUrl(): UrlCollection
+    {
+        $urls = $this->urlRepository->list();
+
+        return new UrlCollection($urls);
     }
 
     /**

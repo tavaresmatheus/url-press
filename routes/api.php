@@ -7,6 +7,7 @@ use App\Http\Controllers\DeleteUserController;
 use App\Http\Controllers\DetailUrlController;
 use App\Http\Controllers\DetailUserController;
 use App\Http\Controllers\GenerateTokenController;
+use App\Http\Controllers\ListUrlsController;
 use App\Http\Controllers\ListUsersController;
 use App\Http\Controllers\UpdateUserController;
 use Illuminate\Support\Facades\Route;
@@ -25,4 +26,5 @@ Route::prefix('urls')->middleware('auth:sanctum')->group(function () {
     Route::post('/', CreateUrlController::class);
     Route::get('/{id}', DetailUrlController::class)->whereUuid('id');
     Route::delete('/{id}', DeleteUrlController::class)->whereUuid('id');
+    Route::get('/', ListUrlsController::class);
 });
