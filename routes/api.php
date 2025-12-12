@@ -5,6 +5,7 @@ use App\Http\Controllers\Url\CreateUrlController;
 use App\Http\Controllers\Url\DeleteUrlController;
 use App\Http\Controllers\Url\DetailUrlController;
 use App\Http\Controllers\Url\ListUrlsController;
+use App\Http\Controllers\Url\RedirectToUrlController;
 use App\Http\Controllers\User\CreateUserController;
 use App\Http\Controllers\User\DeleteUserController;
 use App\Http\Controllers\User\DetailUserController;
@@ -27,4 +28,7 @@ Route::prefix('urls')->middleware('auth:sanctum')->group(function () {
     Route::get('/{id}', DetailUrlController::class)->whereUuid('id');
     Route::delete('/{id}', DeleteUrlController::class)->whereUuid('id');
     Route::get('/', ListUrlsController::class);
+    Route::withoutMiddleware('auth:sanctum')->group(function () {
+        Route::get('/{slug}', RedirectToUrlController::class);
+    });
 });

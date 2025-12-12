@@ -69,6 +69,18 @@ class UrlService implements UrlServiceInterface
     }
 
     /**
+     * @param  string  $slug
+     */
+    public function redirectFromSlugToUrl(string $slug): string
+    {
+        $url = $this->urlRepository->detailUrlBySlug($slug);
+
+        $this->urlRepository->incrementAccesses((string) $url->id);
+
+        return $url->original_url;
+    }
+
+    /**
      * @param  int  $length
      * @return string
      */

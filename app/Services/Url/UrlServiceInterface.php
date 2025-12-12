@@ -31,4 +31,10 @@ interface UrlServiceInterface
      * @return bool
      */
     public function deleteUrl(string $id): bool;
+
+    /**
+     * @param  string  $slug
+     * @return string
+     */
+    public function redirectFromSlugToUrl(string $slug): string;
 }
