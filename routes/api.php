@@ -1,15 +1,15 @@
 <?php
 
-use App\Http\Controllers\CreateUrlController;
-use App\Http\Controllers\CreateUserController;
-use App\Http\Controllers\DeleteUrlController;
-use App\Http\Controllers\DeleteUserController;
-use App\Http\Controllers\DetailUrlController;
-use App\Http\Controllers\DetailUserController;
-use App\Http\Controllers\GenerateTokenController;
-use App\Http\Controllers\ListUrlsController;
-use App\Http\Controllers\ListUsersController;
-use App\Http\Controllers\UpdateUserController;
+use App\Http\Controllers\Auth\GenerateTokenController;
+use App\Http\Controllers\Url\CreateUrlController;
+use App\Http\Controllers\Url\DeleteUrlController;
+use App\Http\Controllers\Url\DetailUrlController;
+use App\Http\Controllers\Url\ListUrlsController;
+use App\Http\Controllers\User\CreateUserController;
+use App\Http\Controllers\User\DeleteUserController;
+use App\Http\Controllers\User\DetailUserController;
+use App\Http\Controllers\User\ListUsersController;
+use App\Http\Controllers\User\UpdateUserController;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/login', GenerateTokenController::class);

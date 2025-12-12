@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use App\Exceptions\InvalidCredentialsException;
-use App\Models\User;
+use App\Http\Controllers\Controller;
 use App\Services\User\UserServiceInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class GenerateTokenController extends Controller
+class CreateUserController extends Controller
 {
     public function __construct(protected UserServiceInterface $userService)
     {
@@ -19,13 +17,12 @@ class GenerateTokenController extends Controller
     /**
      * @param  Request  $request
      * @return JsonResponse
-     *
-     * @throws InvalidCredentialsException
      */
     public function __invoke(Request $request): JsonResponse
     {
         $request->validate(
             [
+                'name' => 'required|max:255',
                 'email' => 'required|email:rfc',
                 'password' => [
                     'required',
@@ -37,28 +34,19 @@ class GenerateTokenController extends Controller
             ]
         );
 
-        $credentials = [
+        $attributes = [
+            'name' => $request->get('name'),
             'email' => $request->get('email'),
             'password' => $request->get('password'),
         ];
 
-        if (Auth::attempt($credentials) === false) {
-            throw new InvalidCredentialsException('Invalid credentials.');
+        $user = $this->userService->createUser($attributes);
+
+        $userId = '';
+        if (is_string($user['id'])) {
+            $userId = $user['id'];
         }
 
-        $user = Auth::user();
-        if (! $user instanceof User) {
-            throw new InvalidCredentialsException('Authentication error.');
-        }
-
-        /** @var \Laravel\Sanctum\NewAccessToken $accessToken */
-        $accessToken = $user->createToken('token');
-
-        $token = $accessToken->plainTextToken;
-
-        return response()->json([
-            'message' => 'Login successful',
-            'token' => $token,
-        ]);
+        return response()->json($user, 201)->header('Location', url('api/users/'.$userId));
     }
 }
