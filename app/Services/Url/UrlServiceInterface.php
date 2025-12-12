@@ -9,8 +9,14 @@ use App\Http\Resources\UrlResource;
 interface UrlServiceInterface
 {
     /**
-     * @param array<original_url: string, user_id: string> $attributes
-     * @return Urlresource
+     * @param  array{original_url: string, user_id: string}  $attributes
+     * @return UrlResource
      */
     public function createUrl(array $attributes): UrlResource;
+
+    /**
+     * @param  string  $id
+     * @return UrlResource
+     */
+    public function detailUrl(string $id): UrlResource;
 }

@@ -16,7 +16,7 @@ class UrlService implements UrlServiceInterface
     }
 
     /**
-     * @param array<original_url: string, user_id: string> $attributes
+     * @param  array{original_url: string, user_id: string}  $attributes
      * @return UrlResource
      */
     public function createUrl(array $attributes): UrlResource
@@ -30,7 +30,16 @@ class UrlService implements UrlServiceInterface
     }
 
     /**
-     * @param int $length
+     * @param  string  $id
+     * @return UrlResource
+     */
+    public function detailUrl(string $id): UrlResource
+    {
+        return new UrlResource($this->urlRepository->detail($id));
+    }
+
+    /**
+     * @param  int  $length
      * @return string
      */
     private function generateSlugFromBase62(int $length = 10): string
@@ -38,6 +47,7 @@ class UrlService implements UrlServiceInterface
         $base62 = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $charsLength = strlen($base62);
 
+        /** @phpstan-var int<1, max> $length */
         $bytes = random_bytes($length);
 
         $slug = '';
