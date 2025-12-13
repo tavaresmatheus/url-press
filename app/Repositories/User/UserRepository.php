@@ -17,10 +17,6 @@ class UserRepository extends GenericRepository implements UserRepositoryInterfac
         parent::__construct($model);
     }
 
-    /**
-     * @param  string  $email
-     * @return User|null
-     */
     public function detailByEmail(string $email): ?User
     {
         /** @var User|null $user */

@@ -11,31 +11,17 @@ interface UserServiceInterface
 {
     /**
      * @param  array<string, mixed>  $attributes
-     * @return UserResource
      */
     public function createUser(array $attributes): UserResource;
 
-    /**
-     * @param  string  $id
-     * @return UserResource
-     */
     public function detailUser(string $id): UserResource;
 
-    /**
-     * @return UserCollection
-     */
     public function listUsers(): UserCollection;
 
     /**
-     * @param  string  $id
      * @param  array<string, mixed>  $attributes
-     * @return UserResource
      */
     public function updateUser(string $id, array $attributes): UserResource;
 
-    /**
-     * @param  string  $id
-     * @return bool
-     */
     public function deleteUser(string $id): bool;
 }

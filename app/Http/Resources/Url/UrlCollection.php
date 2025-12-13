@@ -15,7 +15,7 @@ class UrlCollection extends ResourceCollection
     public function toArray(Request $request): array
     {
         return $this->collection
-            ->map(fn ($url) => new UrlResource($url))
+            ->map(fn ($url): UrlResource => new UrlResource($url))
             ->toArray();
     }
 }

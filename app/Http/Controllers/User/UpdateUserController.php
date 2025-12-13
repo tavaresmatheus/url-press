@@ -9,16 +9,8 @@ use Illuminate\Http\Request;
 
 class UpdateUserController extends Controller
 {
-    public function __construct(protected UserServiceInterface $userService)
-    {
-        $this->userService = $userService;
-    }
+    public function __construct(protected UserServiceInterface $userService) {}
 
-    /**
-     * @param  Request  $request
-     * @param  string  $id
-     * @return JsonResponse
-     */
     public function __invoke(Request $request, string $id): JsonResponse
     {
         $request->validate([

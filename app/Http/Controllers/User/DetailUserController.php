@@ -9,10 +9,7 @@ use Illuminate\Http\Request;
 
 class DetailUserController extends Controller
 {
-    public function __construct(protected UserServiceInterface $userService)
-    {
-        $this->userService = $userService;
-    }
+    public function __construct(protected UserServiceInterface $userService) {}
 
     public function __invoke(Request $request, string $id): JsonResponse
     {

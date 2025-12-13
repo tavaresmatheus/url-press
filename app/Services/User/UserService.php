@@ -13,17 +13,10 @@ use Illuminate\Contracts\Hashing\Hasher;
 
 class UserService implements UserServiceInterface
 {
-    public function __construct(
-        protected UserRepositoryInterface $userRepository,
-        protected Hasher $hash
-    ) {
-        $this->userRepository = $userRepository;
-        $this->hash = $hash;
-    }
+    public function __construct(protected UserRepositoryInterface $userRepository, protected Hasher $hash) {}
 
     /**
      * @param  array<string, mixed>  $attributes
-     * @return UserResource
      *
      * @throws BusinessLogicException
      */
@@ -35,7 +28,7 @@ class UserService implements UserServiceInterface
         }
 
         $emailAlreadyExists = $this->userRepository->detailByEmail($userEmail);
-        if ($emailAlreadyExists !== null) {
+        if ($emailAlreadyExists instanceof \App\Models\User) {
             throw new BusinessLogicException('Couldn\'t create the user.');
         }
 
@@ -50,18 +43,11 @@ class UserService implements UserServiceInterface
         return new UserResource($this->userRepository->create($user));
     }
 
-    /**
-     * @param  string  $id
-     * @return UserResource
-     */
     public function detailUser(string $id): UserResource
     {
         return new UserResource($this->userRepository->detail($id));
     }
 
-    /**
-     * @return UserCollection
-     */
     public function listUsers(): UserCollection
     {
         $users = $this->userRepository->list();
@@ -70,9 +56,7 @@ class UserService implements UserServiceInterface
     }
 
     /**
-     * @param  string  $id
      * @param  array<string, mixed>  $attributes
-     * @return UserResource
      */
     public function updateUser(string $id, array $attributes): UserResource
     {
@@ -81,10 +65,6 @@ class UserService implements UserServiceInterface
         return new UserResource($this->userRepository->update($id, $user));
     }
 
-    /**
-     * @param  string  $id
-     * @return bool
-     */
     public function deleteUser(string $id): bool
     {
         $userResource = $this->detailUser($id);

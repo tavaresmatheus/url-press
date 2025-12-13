@@ -10,16 +10,8 @@ use Illuminate\Http\Request;
 
 class CreateUrlController extends Controller
 {
-    public function __construct(protected UrlServiceInterface $urlService)
-    {
-        $this->urlService = $urlService;
-    }
+    public function __construct(protected UrlServiceInterface $urlService) {}
 
-    /**
-     * @param  Request  $request
-     * @param  User  $user
-     * @return JsonResponse
-     */
     public function __invoke(Request $request, User $user): JsonResponse
     {
         $request->validate(['originalUrl' => 'required|URL']);

@@ -15,7 +15,7 @@ class UserCollection extends ResourceCollection
     public function toArray(Request $request): array
     {
         return $this->collection
-            ->map(fn ($user) => new UserResource($user))
+            ->map(fn ($user): UserResource => new UserResource($user))
             ->toArray();
     }
 }

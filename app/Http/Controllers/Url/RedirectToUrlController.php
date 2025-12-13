@@ -9,16 +9,8 @@ use Illuminate\Http\Request;
 
 class RedirectToUrlController extends Controller
 {
-    public function __construct(protected UrlServiceInterface $urlService)
-    {
-        $this->urlService = $urlService;
-    }
+    public function __construct(protected UrlServiceInterface $urlService) {}
 
-    /**
-     * @param  Request  $request
-     * @param  string  $slug
-     * @return RedirectResponse
-     */
     public function __invoke(Request $request, string $slug): RedirectResponse
     {
         $originalUrl = $this->urlService->redirectFromSlugToUrl($slug);

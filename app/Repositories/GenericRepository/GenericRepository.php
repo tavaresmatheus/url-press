@@ -70,15 +70,11 @@ class GenericRepository implements GenericRepositoryInterface
 
     /**
      * @param  TId  $id
-     * @return bool
      */
     public function delete(string $id): bool
     {
         $wasDeleted = $this->model->newQuery()->where('id', $id)->delete();
-        if (! is_int($wasDeleted) || $wasDeleted <= 0) {
-            return false;
-        }
 
-        return true;
+        return is_int($wasDeleted) && $wasDeleted > 0;
     }
 }

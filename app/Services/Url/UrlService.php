@@ -12,14 +12,10 @@ use App\Repositories\Url\UrlRepositoryInterface;
 
 class UrlService implements UrlServiceInterface
 {
-    public function __construct(protected UrlRepositoryInterface $urlRepository)
-    {
-        $this->urlRepository = $urlRepository;
-    }
+    public function __construct(protected UrlRepositoryInterface $urlRepository) {}
 
     /**
      * @param  array{original_url: string, user_id: string}  $attributes
-     * @return UrlResource
      */
     public function createUrl(array $attributes): UrlResource
     {
@@ -31,18 +27,11 @@ class UrlService implements UrlServiceInterface
         return new UrlResource($this->urlRepository->create($url));
     }
 
-    /**
-     * @param  string  $id
-     * @return UrlResource
-     */
     public function detailUrl(string $id): UrlResource
     {
         return new UrlResource($this->urlRepository->detail($id));
     }
 
-    /**
-     * @return UrlCollection
-     */
     public function listUrl(): UrlCollection
     {
         $urls = $this->urlRepository->list();
@@ -50,10 +39,6 @@ class UrlService implements UrlServiceInterface
         return new UrlCollection($urls);
     }
 
-    /**
-     * @param  string  $id
-     * @return bool
-     */
     public function deleteUrl(string $id): bool
     {
         $urlResource = $this->detailUrl($id);
@@ -68,9 +53,6 @@ class UrlService implements UrlServiceInterface
         return $wasDeleted;
     }
 
-    /**
-     * @param  string  $slug
-     */
     public function redirectFromSlugToUrl(string $slug): string
     {
         $url = $this->urlRepository->detailUrlBySlug($slug);
@@ -80,10 +62,6 @@ class UrlService implements UrlServiceInterface
         return $url->original_url;
     }
 
-    /**
-     * @param  int  $length
-     * @return string
-     */
     private function generateSlugFromBase62(int $length = 10): string
     {
         $base62 = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';

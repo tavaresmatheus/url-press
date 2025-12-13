@@ -12,15 +12,9 @@ use Illuminate\Support\Facades\Auth;
 
 class GenerateTokenController extends Controller
 {
-    public function __construct(protected UserServiceInterface $userService)
-    {
-        $this->userService = $userService;
-    }
+    public function __construct(protected UserServiceInterface $userService) {}
 
     /**
-     * @param  Request  $request
-     * @return JsonResponse
-     *
      * @throws InvalidCredentialsException
      */
     public function __invoke(Request $request): JsonResponse

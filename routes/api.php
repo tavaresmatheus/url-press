@@ -16,19 +16,19 @@ use Illuminate\Support\Facades\Route;
 Route::post('/login', GenerateTokenController::class);
 
 Route::post('/users', CreateUserController::class);
-Route::prefix('users')->middleware('auth:sanctum')->group(function () {
+Route::prefix('users')->middleware('auth:sanctum')->group(function (): void {
     Route::get('/{id}', DetailUserController::class)->whereUuid('id');
     Route::get('/', ListUsersController::class);
     Route::patch('/{id}', UpdateUserController::class)->whereUuid('id');
     Route::delete('/{id}', DeleteUserController::class)->whereUuid('id');
 });
 
-Route::prefix('urls')->middleware('auth:sanctum')->group(function () {
+Route::prefix('urls')->middleware('auth:sanctum')->group(function (): void {
     Route::post('/', CreateUrlController::class);
     Route::get('/{id}', DetailUrlController::class)->whereUuid('id');
     Route::delete('/{id}', DeleteUrlController::class)->whereUuid('id');
     Route::get('/', ListUrlsController::class);
-    Route::withoutMiddleware('auth:sanctum')->group(function () {
+    Route::withoutMiddleware('auth:sanctum')->group(function (): void {
         Route::get('/{slug}', RedirectToUrlController::class);
     });
 });

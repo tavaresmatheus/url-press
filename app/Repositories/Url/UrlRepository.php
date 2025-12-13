@@ -17,10 +17,6 @@ class UrlRepository extends GenericRepository implements UrlRepositoryInterface
         parent::__construct($model);
     }
 
-    /**
-     * @param  string  $slug
-     * @return Url
-     */
     public function detailUrlBySlug(string $slug): Url
     {
         /** @var Url $url */
@@ -32,9 +28,6 @@ class UrlRepository extends GenericRepository implements UrlRepositoryInterface
 
     }
 
-    /**
-     * @param  string  $id
-     */
     public function incrementAccesses(string $id): void
     {
         /** @var Url $url */

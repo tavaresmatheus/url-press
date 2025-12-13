@@ -12,9 +12,5 @@ use App\Repositories\GenericRepository\GenericRepositoryInterface;
  */
 interface UserRepositoryInterface extends GenericRepositoryInterface
 {
-    /**
-     * @param  string  $email
-     * @return User|null
-     */
     public function detailByEmail(string $email): ?User;
 }

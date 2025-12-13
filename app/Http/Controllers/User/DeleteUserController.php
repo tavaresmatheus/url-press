@@ -9,18 +9,8 @@ use Illuminate\Http\Response;
 
 class DeleteUserController extends Controller
 {
-    /**
-     * @param  UserServiceInterface  $userService
-     */
-    public function __construct(protected UserServiceInterface $userService)
-    {
-        $this->userService = $userService;
-    }
+    public function __construct(protected UserServiceInterface $userService) {}
 
-    /**
-     * @param  Request  $request
-     * @return Response
-     */
     public function __invoke(Request $request, string $id): Response
     {
         $this->userService->deleteUser($id);

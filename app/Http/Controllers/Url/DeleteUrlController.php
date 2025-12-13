@@ -11,15 +11,8 @@ use Illuminate\Http\Response;
 
 class DeleteUrlController extends Controller
 {
-    public function __construct(protected UrlServiceInterface $urlService)
-    {
-        $this->urlService = $urlService;
-    }
+    public function __construct(protected UrlServiceInterface $urlService) {}
 
-    /**
-     * @param  Request  $request
-     * @param  string  $id
-     */
     public function __invoke(Request $request, string $id): Response
     {
         $this->urlService->deleteUrl($id);
