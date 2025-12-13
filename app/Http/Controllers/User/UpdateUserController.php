@@ -18,10 +18,7 @@ class UpdateUserController extends Controller
             'email' => 'email:rfc',
         ]);
 
-        $attributes = [
-            'name' => $request->get('name'),
-            'email' => $request->get('email'),
-        ];
+        $attributes = request()->only(['name', 'email']);
 
         $user = $this->userService->updateUser($id, $attributes);
 
