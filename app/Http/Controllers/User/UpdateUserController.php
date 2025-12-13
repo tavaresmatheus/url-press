@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Services\User\UserServiceInterface;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -18,10 +19,13 @@ class UpdateUserController extends Controller
             'email' => 'email:rfc',
         ]);
 
+        /** @var array<string, mixed> */
         $attributes = request()->only(['name', 'email']);
 
-        $user = $this->userService->updateUser($id, $attributes);
+        /** @var User $user */
+        $user = $request->user();
+        $updatedUser = $this->userService->updateUser($user->id, $attributes);
 
-        return response()->json($user);
+        return response()->json($updatedUser);
     }
 }
