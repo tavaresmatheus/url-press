@@ -31,6 +31,7 @@ class CreateUserController extends Controller
             'name' => $request->get('name'),
             'email' => $request->get('email'),
             'password' => $request->get('password'),
+            'role' => 'user',
         ];
 
         $user = $this->userService->createUser($attributes);
