@@ -60,7 +60,8 @@ class UserService implements UserServiceInterface
      */
     public function updateUser(string $id, array $attributes): UserResource
     {
-        $user = new User($attributes);
+        $user = $this->userRepository->detail($id);
+        $user->fill($attributes);
 
         return new UserResource($this->userRepository->update($id, $user));
     }
