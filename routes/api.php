@@ -2,6 +2,7 @@
 
 use App\Enums\UserRoleEnum;
 use App\Http\Controllers\Auth\GenerateTokenController;
+use App\Http\Controllers\Me\DetailMeController;
 use App\Http\Controllers\Url\CreateUrlController;
 use App\Http\Controllers\Url\DeleteUrlController;
 use App\Http\Controllers\Url\DetailUrlController;
@@ -32,4 +33,8 @@ Route::prefix('urls')->middleware('auth:sanctum')->group(function (): void {
     Route::withoutMiddleware('auth:sanctum')->group(function (): void {
         Route::get('/{slug}', RedirectToUrlController::class);
     });
+});
+
+Route::prefix('me')->middleware('auth:sanctum')->group(function (): void {
+    Route::get('/', DetailMeController::class);
 });
