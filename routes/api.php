@@ -2,6 +2,7 @@
 
 use App\Enums\UserRoleEnum;
 use App\Http\Controllers\Auth\GenerateTokenController;
+use App\Http\Controllers\Me\DeleteMeController;
 use App\Http\Controllers\Me\DetailMeController;
 use App\Http\Controllers\Me\UpdateMeController;
 use App\Http\Controllers\Url\CreateUrlController;
@@ -39,4 +40,5 @@ Route::prefix('urls')->middleware('auth:sanctum')->group(function (): void {
 Route::prefix('me')->middleware('auth:sanctum')->group(function (): void {
     Route::get('/', DetailMeController::class);
     Route::patch('/', UpdateMeController::class);
+    Route::delete('/', DeleteMeController::class);
 });
