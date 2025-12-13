@@ -77,6 +77,9 @@
         ],
         "php-stan": [
             "vendor/bin/phpstan analyse"
+        ],
+        "rector": [
+            "vendor/bin/rector process --dry-run"
         ]
     },
     "extra": {
